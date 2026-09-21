@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>炎上ガード for X — プライバシーポリシー</title>
+    <meta name="description" content="Chrome 拡張機能「炎上ガード for X」が扱う情報と、その取り扱いについて。" />
+    <link rel="icon" href="icons/icon-32.png" />
+    <style>
+      :root { color-scheme: light dark; --fg: #0f1419; --sub: #536471; --bg: #fff; --card: #f7f9f9; --line: #cfd9de; }
+      @media (prefers-color-scheme: dark) {
+        :root { --fg: #e7e9ea; --sub: #8b98a5; --bg: #16181c; --card: #202327; --line: #2f3336; }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; padding: 48px 20px 96px; background: var(--bg); color: var(--fg);
+        font: 16px/1.85 -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+      }
+      main { max-width: 720px; margin: 0 auto; }
+      h1 { font-size: 26px; margin: 0 0 4px; }
+      .updated { color: var(--sub); font-size: 14px; margin: 0 0 32px; }
+      h2 { font-size: 18px; margin: 40px 0 10px; padding-top: 20px; border-top: 1px solid var(--line); }
+      h3 { font-size: 15px; margin: 24px 0 6px; }
+      p, li { margin: 0 0 10px; }
+      ul { padding-left: 1.3em; }
+      .summary { background: var(--card); border-radius: 14px; padding: 18px 22px; margin: 0 0 8px; }
+      .summary ul { margin: 0; }
+      table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 15px; }
+      th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+      th { color: var(--sub); font-weight: 600; white-space: nowrap; }
+      code { background: var(--card); padding: 2px 6px; border-radius: 5px; font-size: 14px; }
+      a { color: inherit; }
+      footer { margin-top: 48px; color: var(--sub); font-size: 14px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>炎上ガード for X — プライバシーポリシー</h1>
+      <p class="updated">最終更新: 2026-09-20</p>
+
+      <div class="summary">
+        <ul>
+          <li>この拡張機能の開発者は、利用者のデータを<b>一切受け取りません</b>。</li>
+          <li>投稿の下書き本文は、<b>利用者自身の API キー</b>で TypeSafe（<code>api.typesafe.ai</code>）にのみ送信されます。</li>
+          <li>API キーと設定は、<b>利用者の端末内</b>（<code>chrome.storage.local</code>）にだけ保存されます。</li>
+          <li>解析ツール、広告、トラッキングの類は一切組み込んでいません。</li>
+        </ul>
+      </div>
+
+      <h2>取り扱う情報</h2>
+
+      <h3>1. 投稿の下書き本文</h3>
+      <p>
+        X（x.com / twitter.com）で投稿ボタンを押した時点の下書き本文を、炎上リスクの判定のために
+        <code>https://api.typesafe.ai/v1/systemone</code> へ送信します。
+      </p>
+      <ul>
+        <li>送信は判定のためだけに行われ、判定結果を表示した後は破棄されます。</li>
+        <li>拡張機能側に保存されることはありません。</li>
+        <li>
+          送信先での取り扱いは
+          <a href="https://typesafe.ai" target="_blank" rel="noreferrer noopener">TypeSafe</a>
+          のポリシーに従います。利用者自身の API キーによる利用であり、開発者は関与しません。
+        </li>
+      </ul>
+
+      <h3>2. 返信先の投稿本文（既定では送信しません）</h3>
+      <p>
+        返信を書く場合、判定の精度を上げるために返信先の本文も送ることができますが、
+        <b>この機能は既定で無効</b>です。設定画面で明示的に有効にした場合にのみ送信されます。
+        利用者本人が書いた文章ではないため、本人の選択なしには外部へ出しません。
+      </p>
+
+      <h3>3. TypeSafe の API キー</h3>
+      <ul>
+        <li><code>chrome.storage.local</code> に保存します。<code>chrome.storage.sync</code> は使いません（他の端末に同期されません）。</li>
+        <li>判定リクエストの <code>Authorization</code> ヘッダとして <code>api.typesafe.ai</code> にのみ送られます。</li>
+        <li>開発者を含む第三者に送信されることはありません。</li>
+      </ul>
+
+      <h3>4. 設定値</h3>
+      <p>判定の閾値、モデル名、有効・無効の状態を端末内に保存します。端末外には出ません。</p>
+
+      <h2>送信しないもの</h2>
+      <ul>
+        <li>氏名、メールアドレス、アカウント名などの個人を特定できる情報</li>
+        <li>閲覧履歴、クリック履歴、滞在時間などの行動データ</li>
+        <li>X のログイン情報、Cookie、認証トークン</li>
+        <li>下書き以外のページ内容（タイムラインに流れている他者の投稿など）</li>
+      </ul>
+
+      <h2>第三者への提供</h2>
+      <p>
+        開発者は利用者のデータを受け取らないため、第三者に提供することもありません。
+        <code>api.typesafe.ai</code> への送信は、利用者自身が用意した API キーによる、
+        利用者と TypeSafe の間の通信です。
+      </p>
+
+      <h2>データの削除</h2>
+      <p>
+        拡張機能を削除すると、保存された API キーと設定も同時に削除されます。
+        設定画面で API キーを空にして保存することでも消去できます。
+      </p>
+
+      <h2>権限を求める理由</h2>
+      <table>
+        <tr><th>権限</th><td>理由</td></tr>
+        <tr><th><code>storage</code></th><td>API キーと閾値設定を端末内に保存するため</td></tr>
+        <tr><th><code>api.typesafe.ai</code></th><td>炎上リスクの判定を依頼するため</td></tr>
+        <tr><th>x.com / twitter.com</th><td>投稿ボタンの押下を検知し、判定結果のダイアログを表示するため</td></tr>
+      </table>
+      <p>拡張機能は外部から取得したコードを実行しません（リモートコードの使用なし）。</p>
+
+      <h2>お問い合わせ</h2>
+      <p><a href="mailto:hawkymisc@applied-ai-engineering.com">hawkymisc@applied-ai-engineering.com</a></p>
+
+      <footer>
+        本ポリシーを変更する場合は、本ページの「最終更新」を更新し、重要な変更については
+        拡張機能の更新時に説明を添えます。
+        <br /><a href="./">← 炎上ガード for X のトップへ</a>
+      </footer>
+    </main>
+  </body>
+</html>

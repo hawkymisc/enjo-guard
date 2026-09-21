@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>炎上ガード for X</title>
+    <meta name="description" content="X に投稿する直前、下書きの炎上リスクを AI が判定する Chrome 拡張機能。" />
+    <link rel="icon" href="icons/icon-32.png" />
+    <style>
+      :root { color-scheme: light dark; --fg: #0f1419; --sub: #536471; --bg: #fff; --card: #f7f9f9; --line: #cfd9de; }
+      @media (prefers-color-scheme: dark) {
+        :root { --fg: #e7e9ea; --sub: #8b98a5; --bg: #16181c; --card: #202327; --line: #2f3336; }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; padding: 48px 20px 96px; background: var(--bg); color: var(--fg);
+        font: 16px/1.85 -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+      }
+      main { max-width: 720px; margin: 0 auto; }
+      header { display: flex; align-items: center; gap: 18px; margin: 0 0 28px; }
+      header img { width: 72px; height: 72px; border-radius: 16px; }
+      h1 { font-size: 26px; margin: 0; line-height: 1.4; }
+      .lead { color: var(--sub); font-size: 15px; margin: 2px 0 0; }
+      h2 { font-size: 18px; margin: 40px 0 10px; padding-top: 20px; border-top: 1px solid var(--line); }
+      p, li { margin: 0 0 10px; }
+      ul { padding-left: 1.3em; }
+      .summary { background: var(--card); border-radius: 14px; padding: 18px 22px; }
+      .summary p:last-child { margin: 0; }
+      a { color: inherit; }
+      footer { margin-top: 48px; color: var(--sub); font-size: 14px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <img src="icons/icon-128.png" alt="" />
+        <div>
+          <h1>炎上ガード for X</h1>
+          <p class="lead">投稿前に炎上リスクを判定する Chrome 拡張機能</p>
+        </div>
+      </header>
+
+      <div class="summary">
+        <p>
+          X（旧 Twitter）で投稿ボタンを押した瞬間、下書きの炎上リスクを AI が判定します。
+          設定した閾値を超えたときだけ「このまま投稿しますか？」と確認し、閾値以下なら何も出ず、そのまま投稿されます。
+        </p>
+      </div>
+
+      <h2>判定する内容</h2>
+      <ul>
+        <li>想定される批判の規模（0〜4 の 5 段階）</li>
+        <li>特定の個人・団体への攻撃</li>
+        <li>属性にもとづく差別的表現</li>
+        <li>同意のない個人情報・私的なやり取りの公開</li>
+        <li>裏付けのない断定</li>
+        <li>皮肉や冗談が文字どおり受け取られる恐れ</li>
+      </ul>
+
+      <h2>投稿をブロックはしません</h2>
+      <p>
+        判定は確率であって正解ではありません。ダイアログには「書き直す」と「それでも投稿する」の両方があり、
+        最終的に決めるのは利用者自身です。判定できなかったとき（通信失敗・キー未設定など）も投稿は妨げず、理由を画面に表示します。
+      </p>
+
+      <h2>API キーは自分で用意します（BYOK）</h2>
+      <p>
+        <a href="https://typesafe.ai" target="_blank" rel="noreferrer noopener">typesafe.ai</a>
+        で取得したキーを設定画面に入力して使います。キーは端末内（<code>chrome.storage.local</code>）にのみ保存され、
+        開発者が利用者のデータや API キーを受け取ることはありません。
+      </p>
+
+      <h2>プライバシー</h2>
+      <p><a href="privacy.html">プライバシーポリシー</a></p>
+
+      <h2>お問い合わせ</h2>
+      <p><a href="mailto:hawkymisc@applied-ai-engineering.com">hawkymisc@applied-ai-engineering.com</a></p>
+
+      <footer>© 2026 Hawkie</footer>
+    </main>
+  </body>
+</html>
